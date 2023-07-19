@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Modelling and Numerical Methods &#8212; Modelling and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'section_1/Lecture 1.3 - Intro to Tensors';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../home_page.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../home_page.html">
+                    Home Page
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsection_1/Lecture 1.3 - Intro to Tensors.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/section_1/Lecture 1.3 - Intro to Tensors.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelling and Numerical Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelling and Numerical Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-3-introduction-to-tensors">Lecture 1.3 - Introduction to Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saskia-goes-s-goes-imperial-ac-uk">Saskia Goes, s.goes@imperial.ac.uk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-a-name-tensors">Tensors <a name="tensors"></a><ul class="nav section-nav flex-column">
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-rank-a-name-tensor-rank">Tensor Rank <a name="tensor_rank"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#notation-a-name-notation">Notation <a name="notation"></a><ul class="nav section-nav flex-column">
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-tensor">An Example Tensor</a></li>
+</ul>
+</a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#stress-tensor-a-name-stress-tensor">Stress Tensor <a name="stress_tensor"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#distinction-between-tensor-and-its-matrix-a-name-distinction">Distinction between tensor and its matrix <a name="distinction"></a></a></li>
+</ul>
+</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-operations-a-name-tensor-operations">Tensor Operations <a name="tensor_operations"></a><ul class="nav section-nav flex-column">
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#summation-einstein-convention-a-name-summation-einstein-convention">Summation (Einstein) Convention <a name="summation_einstein_convention"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#notation-conventions-a-name-notation-conventions">Notation Conventions <a name="notation_conventions"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#dummy-vs-free-index-a-name-dummy-index">Dummy vs Free Index <a name="dummy_index"></a></a></li>
+</ul>
+</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelling-and-numerical-methods">
+<h1>Modelling and Numerical Methods<a class="headerlink" href="#modelling-and-numerical-methods" title="Permalink to this heading">#</a></h1>
+<section id="lecture-1-3-introduction-to-tensors">
+<h2>Lecture 1.3 - Introduction to Tensors<a class="headerlink" href="#lecture-1-3-introduction-to-tensors" title="Permalink to this heading">#</a></h2>
+<section id="saskia-goes-s-goes-imperial-ac-uk">
+<h3>Saskia Goes, <a class="reference external" href="mailto:s&#46;goes&#37;&#52;&#48;imperial&#46;ac&#46;uk">s<span>&#46;</span>goes<span>&#64;</span>imperial<span>&#46;</span>ac<span>&#46;</span>uk</a><a class="headerlink" href="#saskia-goes-s-goes-imperial-ac-uk" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Be able to perform vector/tensor operations (addition,
+multiplication) on Cartesian orthonormal bases</p></li>
+<li><p>Be able to do basic vector/tensor calculus (time and
+space derivatives, divergence, curl of a vector field)
+on these bases.</p></li>
+<li><p>Perform transformation of a vector from one to
+another Cartesian basis.</p></li>
+<li><p>Understand differences/commonalities tensor and
+vector</p></li>
+<li><p>Use index notation and Einstein convention</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><span class="xref myst">Tensors</span><br />
+1.1 <span class="xref myst">Tensor Rank</span><br />
+1.2 <span class="xref myst">Notation</span><br />
+1.3 <span class="xref myst">Stress Tensor</span><br />
+1.4 <span class="xref myst">Distinction between tensor and its matrix</span></p></li>
+<li><p><span class="xref myst">Tensor Operations</span><br />
+2.1 <span class="xref myst">Summation (Einstein) Convention</span><br />
+2.2 <span class="xref myst">Notation Conventions</span><br />
+2.3 <span class="xref myst">Dummy vs Free Index</span></p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tensors-a-name-tensors">
+<h1>Tensors <a name = "tensors"><a class="headerlink" href="#tensors-a-name-tensors" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Tensors are a generalisation of vectors to more
+dimensions</p></li>
+<li><p>Use when properties depend on direction in
+more than one way.</p></li>
+<li><p>A physical quantity that is independent of
+coordinate system is used</p></li>
+<li><p>Derives from the word tension (= stress)</p></li>
+<li><p>Stress tensor is an example</p></li>
+<li><p>Not just a multidimensional array</p></li>
+</ul>
+<p>Further examples of the uses of tensors include: Stress, strain, and moment tensors. Electrostatics, electrodynamics, rotation, crystal properties</p>
+<section id="tensor-rank-a-name-tensor-rank">
+<h2>Tensor Rank <a name = "tensor_rank"><a class="headerlink" href="#tensor-rank-a-name-tensor-rank" title="Permalink to this heading">#</a></h2>
+<p>Tensors describe properties that depend on direction</p>
+<p>Tensor rank 0 - <strong>scalar - independent of direction</strong><br />
+Tensor rank 1 - <strong>vector - depends on direction in 1 way</strong><br />
+Tensor rank 2 - <strong>tensor - depends on direction in 2 ways</strong></p>
+<p><img alt="Tensor%20rank.PNG" src="section_1/attachment:Tensor%20rank.PNG" /></p>
+</section>
+<section id="notation-a-name-notation">
+<h2>Notation <a name = "notation"><a class="headerlink" href="#notation-a-name-notation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tensors as <span class="math notranslate nohighlight">\(\mathbf{T}\)</span></p></li>
+<li><p>Second order tensors wirtten as <span class="math notranslate nohighlight">\(\bar{\bar{\mathbf{T}}}\)</span> or <span class="math notranslate nohighlight">\(\underline{\underline{\mathbf{T}}}\)</span></p></li>
+<li><p>Index notation: <span class="math notranslate nohighlight">\(T_{ij}\)</span> where <span class="math notranslate nohighlight">\(i,j=x,y,z\)</span> or <span class="math notranslate nohighlight">\(i,j=1,2,3\)</span></p></li>
+<li><p>For higher order: <span class="math notranslate nohighlight">\(T_{ijkl}\)</span></p></li>
+</ul>
+<section id="an-example-tensor">
+<h3>An Example Tensor<a class="headerlink" href="#an-example-tensor" title="Permalink to this heading">#</a></h3>
+<p>Here is an example of a tensor, the gradient of velocity that depends on direction in two ways</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla \mathbf{v} = \frac{\partial v_j}{\partial x_i} = 
+\left[\begin{array}{cc}
+\frac{\partial v_1}{\partial x_1} &amp; \frac{\partial v_2}{\partial x_1} &amp; \frac{\partial v_3}{\partial x_1} \\
+\frac{\partial v_1}{\partial x_2} &amp; \frac{\partial v_2}{\partial x_2} &amp; \frac{\partial v_3}{\partial x_2} \\
+\frac{\partial v_1}{\partial x_3} &amp; \frac{\partial v_2}{\partial x_3} &amp; \frac{\partial v_3}{\partial x_3} \\
+\end{array}\right]
+\end{split}\]</div>
+<p>Where each numerator, <span class="math notranslate nohighlight">\(v_j\)</span>, is a component of velocity and each denominator <span class="math notranslate nohighlight">\(x_i\)</span> is the direction which the spatial variation, <span class="math notranslate nohighlight">\(\frac{\partial v_j}{\partial x_i}\)</span> is in.</p>
+<p>This tensor gradient definition is common in fluid dynamics<br />
+<span style="color:red">
+<em>Note: some texts (including Lai et al., Reddy)
+use a transposed definition:</em> </span>
+$<span class="math notranslate nohighlight">\(
+\nabla \mathbf{v} = \frac{\partial v_j}{\partial x_i} = 
+\left[\begin{array}{cc}
+\frac{\partial v_1}{\partial x_1} &amp; \frac{\partial v_1}{\partial x_2} &amp; \frac{\partial v_1}{\partial x_3} \\
+\frac{\partial v_2}{\partial x_1} &amp; \frac{\partial v_2}{\partial x_2} &amp; \frac{\partial v_2}{\partial x_3} \\
+\frac{\partial v_3}{\partial x_1} &amp; \frac{\partial v_3}{\partial x_2} &amp; \frac{\partial v_3}{\partial x_3} \\
+\end{array}\right]
+\)</span>$</p>
+</section>
+</section>
+<section id="stress-tensor-a-name-stress-tensor">
+<h2>Stress Tensor <a name = "stress_tensor"><a class="headerlink" href="#stress-tensor-a-name-stress-tensor" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><em>Body forces</em> - depend on volume, e.g. gravity</p></li>
+<li><p><em>Surface forces</em> - depend on surface area, e.g. friction</p></li>
+</ul>
+<p>Forces introduce a state of stress in a body</p>
+<div>
+<img src="attachment:Stess%20tensor.PNG" width="500"/>
+</div>
+<ul class="simple">
+<li><p>the <span class="math notranslate nohighlight">\(\Delta\mathbf{f}\)</span> necessary to maintain equilibrium depends on
+orientation of the plane, <span class="math notranslate nohighlight">\(\hat{\mathbf{n_1}}\)</span></p></li>
+<li><p>the traction, <span class="math notranslate nohighlight">\(\mathbf{t_1}\)</span> on the surface is defined as:
+$<span class="math notranslate nohighlight">\(
+\mathbf{t_1} = \mathbf{t}(\mathbf{\hat{n_1}}) = \lim_{\Delta A \rightarrow 0} \frac{\Delta\mathbf{f}}{\Delta A_1}
+\)</span><span class="math notranslate nohighlight">\(  
+\)</span><span class="math notranslate nohighlight">\(
+\mathbf{t_1} = (\sigma_{11}, \sigma_{12}, \sigma_{13})
+\)</span>$</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{11} = \lim_{\Delta A \rightarrow 0} \frac{\Delta\mathbf{f_1}}{\Delta A_1}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{12} = \lim_{\Delta A \rightarrow 0} \frac{\Delta\mathbf{f_2}}{\Delta A_1} 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{13} = \lim_{\Delta A \rightarrow 0} \frac{\Delta\mathbf{f_3}}{\Delta A_1}
+\]</div>
+<p>Nine components are needed to fully describe the stress.</p>
+<center> $\sigma_{11}, \sigma_{12}, \sigma_{13}$ for $\Delta A_1$, </center>   <center> $\sigma_{21}, \sigma_{22}, \sigma_{23}$ for $\Delta A_2$, </center>
+<center> $\sigma_{31}, \sigma_{32}, \sigma_{33}$ for $\Delta A_3$. </center> 
+<p>Generalised stress:
+$<span class="math notranslate nohighlight">\(
+\sigma_{ij} = \left[\begin{array}{cc}
+\sigma_{11} &amp; \sigma_{12} &amp; \sigma_{13} \\
+\sigma_{21} &amp; \sigma_{22} &amp; \sigma_{23} \\
+\sigma_{31} &amp; \sigma_{32} &amp; \sigma_{33} \\
+\end{array}\right]
+\)</span>$</p>
+<ul class="simple">
+<li><p>First index indicates orientation of plane</p></li>
+<li><p>Second index indicates orientation of force</p></li>
+</ul>
+</section>
+<section id="distinction-between-tensor-and-its-matrix-a-name-distinction">
+<h2>Distinction between tensor and its matrix <a name = "distinction"><a class="headerlink" href="#distinction-between-tensor-and-its-matrix-a-name-distinction" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tensor – a physical quantity that is independent of
+coordinate system used</p></li>
+<li><p>Matrix of a tensor – contains components of that tensor
+in a particular coordinate frame</p></li>
+</ul>
+<p>You could test that indeed tensor addition and multiplication
+satisfy transformation laws</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tensor-operations-a-name-tensor-operations">
+<h1>Tensor Operations <a name = "tensor_operations"><a class="headerlink" href="#tensor-operations-a-name-tensor-operations" title="Permalink to this heading">#</a></h1>
+<section id="summation-einstein-convention-a-name-summation-einstein-convention">
+<h2>Summation (Einstein) Convention <a name = "summation_einstein_convention"><a class="headerlink" href="#summation-einstein-convention-a-name-summation-einstein-convention" title="Permalink to this heading">#</a></h2>
+<p>When an index in a single term is a duplicate, dummy index, summation is implied without writing the summation symbol. An example is shown below:</p>
+<div class="math notranslate nohighlight">
+\[
+a_1 v_1 + a_2 v_2 + a_3 v_3 = \sum_{i=1}^3 a_i v_i = a_i v_i
+\]</div>
+<p>An example with three terms is shown below:</p>
+<center> $a_{ij} x_i y_j = \sum_{i=1}^3 \sum_{j=1}^3 a_{ij} x_i y_j$ </center>
+<center> $= a_{11} x_1 y_1 + a_{12} x_1 y_2 + a_{13} x_1 y_3$ </center>
+<center> $= a_{21} x_2 y_1 + a_{22} x_2 y_2 + a_{23} x_2 y_3$ </center>
+<center> $= a_{31} x_3 y_1 + a_{32} x_3 y_2 + a_{33} x_3 y_3$ </center>
+<p>The example below is <strong>invalid</strong>, as there are indices repeated more than twice
+$<span class="math notranslate nohighlight">\(
+\sum_{i=1}^3 a_i b_i v_i \neq a_i b_i v_i
+\)</span>$</p>
+<p><em>For more details see <a class="reference external" href="https://en.wikipedia.org/wiki/Einstein_notation">https://en.wikipedia.org/wiki/Einstein_notation</a></em></p>
+</section>
+<section id="notation-conventions-a-name-notation-conventions">
+<h2>Notation Conventions <a name = "notation_conventions"><a class="headerlink" href="#notation-conventions-a-name-notation-conventions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Index notation - <span class="math notranslate nohighlight">\(\alpha_{ij} x_i y_j = \sum_{i=1}^3 \sum_{j=1}^3 \alpha_{ij} x_i y_j\)</span></p></li>
+<li><p>Matrix-vector notation -
+<span class="math notranslate nohighlight">\(\mathbf{x^T A y} = (\begin{array} \\ x_1 &amp; x_2 &amp; x_3\end{array})\)</span>
+<span class="math notranslate nohighlight">\(\left[\begin{array} \\ 
+  \alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13} \\
+  \alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13} \\
+  \alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13} \\
+\end{array}\right]\)</span>
+<span class="math notranslate nohighlight">\(\left(\begin{array} \\ y_1 \\ y_2 \\ y_3\end{array}\right)\)</span></p></li>
+<li><p>Other versions of index notation - <span class="math notranslate nohighlight">\(x_i \alpha_{ij} y_j = \alpha_{ij} x_i y_j = \alpha_{ij} y_j x_i\)</span></p></li>
+</ul>
+</section>
+<section id="dummy-vs-free-index-a-name-dummy-index">
+<h2>Dummy vs Free Index <a name = "dummy_index"><a class="headerlink" href="#dummy-vs-free-index-a-name-dummy-index" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ 
+a_1 v_2 + a_2 v_2 + a_3 v_3 = \sum_{i=1}^3 a_i v_i = \sum_{k=1}^3 a_k v_k 
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i,k\)</span> - dummy index: appears in duplicates and can be
+substituted without changing equation</p></li>
+</ul>
+<p style='text-align: right;'> $F_1 = A_1 (B_1 C_1 + B_2 C_2 + B_3 C_3)$ </p>
+<p style='text-align: right;'> $F_j = A_j \sum_{i=1}^3 B_i C_i     \Longrightarrow$ &nbsp; &nbsp; &nbsp; $F_2 = A_2 (B_1 C_1 + B_2 C_2 + B_3 C_3)$ </p>
+<p style='text-align: right;'> $F_3 = A_3 (B_1 C_1 + B_2 C_2 + B_3 C_3)$ </p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(j\)</span> - free index, appears once in each term of the equation</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./section_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelling and Numerical Methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-1-3-introduction-to-tensors">Lecture 1.3 - Introduction to Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saskia-goes-s-goes-imperial-ac-uk">Saskia Goes, s.goes@imperial.ac.uk</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-a-name-tensors">Tensors <a name="tensors"></a><ul class="nav section-nav flex-column">
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-rank-a-name-tensor-rank">Tensor Rank <a name="tensor_rank"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#notation-a-name-notation">Notation <a name="notation"></a><ul class="nav section-nav flex-column">
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-tensor">An Example Tensor</a></li>
+</ul>
+</a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#stress-tensor-a-name-stress-tensor">Stress Tensor <a name="stress_tensor"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#distinction-between-tensor-and-its-matrix-a-name-distinction">Distinction between tensor and its matrix <a name="distinction"></a></a></li>
+</ul>
+</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tensor-operations-a-name-tensor-operations">Tensor Operations <a name="tensor_operations"></a><ul class="nav section-nav flex-column">
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#summation-einstein-convention-a-name-summation-einstein-convention">Summation (Einstein) Convention <a name="summation_einstein_convention"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#notation-conventions-a-name-notation-conventions">Notation Conventions <a name="notation_conventions"></a></a></li>
+<li class="nav-item toc-entry"><a class="reference internal nav-link" href="#dummy-vs-free-index-a-name-dummy-index">Dummy vs Free Index <a name="dummy_index"></a></a></li>
+</ul>
+</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Imperial College London
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

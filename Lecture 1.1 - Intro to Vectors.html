@@ -1,0 +1,958 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Continuum Mechanics and Vector/Tensor Calculus &#8212; Modelling and Numerical Methods</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Lecture 1.1 - Intro to Vectors';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vector Transformations" href="Lecture%201.2%20-%20Vector%20Tranformations.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Continuum Mechanics and Vector/Tensor Calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lecture%201.2%20-%20Vector%20Tranformations.html">Vector Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lecture%201.3%20-%20Intro%20to%20Tensors.html">Intro to Tensors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLecture 1.1 - Intro to Vectors.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Lecture 1.1 - Intro to Vectors.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Continuum Mechanics and Vector/Tensor Calculus</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primary-learning-materials">Primary Learning Materials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomended-reading">Recomended reading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuum-mechanics">Continuum Mechanics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuum-mechanics-equations">Continuum Mechanics Equations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-equations">Differential Equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-tensors">Vectors and Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes-a-name-learning-outcomes-a">Learning Outcomes <a name="learning_outcomes"></a></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-vectors-and-tensors">Introduction to Vectors and Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-charecteristics-of-a-vector">Key Charecteristics of a Vector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-properties">Vector properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-rotation-vector">Finite rotation “Vector”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear independence</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-dot-or-scalar-product">Inner, dot, or scalar product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-vector-or-outer-product">Cross, vector, or outer product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#product-calculations">Product calculations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-cartesian-coordinate-system">Rectangular Cartesian Coordinate System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-of-cartesian-geometric-and-algebraic-dot-product">Equivalence of Cartesian geometric and algebraic dot product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartesian-algebraic-cross-product">Cartesian algebraic cross product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triple-products-a-name-tripple-product-a">Triple Products <a name="tripple_product"></a></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covered-so-far">Covered so far</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#take-a-break-then-try-yourself">Take a break, then try yourself</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="continuum-mechanics-and-vector-tensor-calculus">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Continuum Mechanics and Vector/Tensor Calculus</a><a class="headerlink" href="#continuum-mechanics-and-vector-tensor-calculus" title="Permalink to this heading">#</a></h1>
+<p>Lecture 1.1<br />
+Saskia Goes, <a class="reference external" href="mailto:s&#46;goes&#37;&#52;&#48;imperial&#46;ac&#46;uk">s<span>&#46;</span>goes<span>&#64;</span>imperial<span>&#46;</span>ac<span>&#46;</span>uk</a></p>
+<section id="table-of-contents">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Table of Contents</a><a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h2>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#continuum-mechanics-and-vector-tensor-calculus" id="id1">Continuum Mechanics and Vector/Tensor Calculus</a></p>
+<ul>
+<li><p><a class="reference internal" href="#table-of-contents" id="id2">Table of Contents</a></p></li>
+<li><p><a class="reference internal" href="#primary-learning-materials" id="id3">Primary Learning Materials</a></p>
+<ul>
+<li><p><a class="reference internal" href="#recomended-reading" id="id4">Recomended reading</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#introduction" id="id5">Introduction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#continuum-mechanics" id="id6">Continuum Mechanics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#continuum-mechanics-equations" id="id7">Continuum Mechanics Equations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#differential-equations" id="id8">Differential Equations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#vectors-and-tensors" id="id9">Vectors and Tensors</a></p>
+<ul>
+<li><p><a class="reference internal" href="#learning-outcomes-a-name-learning-outcomes-a" id="id10">Learning Outcomes <a name="learning_outcomes"></a></a></p></li>
+<li><p><a class="reference internal" href="#introduction-to-vectors-and-tensors" id="id11">Introduction to Vectors and Tensors</a></p>
+<ul>
+<li><p><a class="reference internal" href="#key-charecteristics-of-a-vector" id="id12">Key Charecteristics of a Vector</a></p></li>
+<li><p><a class="reference internal" href="#notation" id="id13">Notation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#vector-properties" id="id14">Vector properties</a></p>
+<ul>
+<li><p><a class="reference internal" href="#finite-rotation-vector" id="id15">Finite rotation “Vector”</a></p></li>
+<li><p><a class="reference internal" href="#linear-independence" id="id16">Linear independence</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#inner-dot-or-scalar-product" id="id17">Inner, dot, or scalar product</a></p></li>
+<li><p><a class="reference internal" href="#cross-vector-or-outer-product" id="id18">Cross, vector, or outer product</a></p></li>
+<li><p><a class="reference internal" href="#product-calculations" id="id19">Product calculations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#rectangular-cartesian-coordinate-system" id="id20">Rectangular Cartesian Coordinate System</a></p>
+<ul>
+<li><p><a class="reference internal" href="#equivalence-of-cartesian-geometric-and-algebraic-dot-product" id="id21">Equivalence of Cartesian geometric and algebraic dot product</a></p></li>
+<li><p><a class="reference internal" href="#cartesian-algebraic-cross-product" id="id22">Cartesian algebraic cross product</a></p></li>
+<li><p><a class="reference internal" href="#triple-products-a-name-tripple-product-a" id="id23">Triple Products <a name="tripple_product"></a></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#covered-so-far" id="id24">Covered so far</a></p></li>
+<li><p><a class="reference internal" href="#take-a-break-then-try-yourself" id="id25">Take a break, then try yourself</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+</section>
+<section id="primary-learning-materials">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Primary Learning Materials</a><a class="headerlink" href="#primary-learning-materials" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Lecture notes in Jupyter notebook</p></li>
+<li><p>Problem sets and solutions in Jupyter notebook</p></li>
+</ul>
+<p>All content avaliable on GitHub</p>
+<section id="recomended-reading">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Recomended reading</a><a class="headerlink" href="#recomended-reading" title="Permalink to this heading">#</a></h3>
+<p>No textbook is required for this module, however the following texts may be helpful</p>
+<ul class="simple">
+<li><p>Introduction to Continuum Mechanics, W.M. Lai, D. Rubin,
+E. Krempl, 4th edition, Elsevier – available in electronic
+form through IC library</p></li>
+<li><p>An Introduction to Continuum Mechanics, J.N. Reddy, 2nd
+edition, Cambridge University Press, 2013</p></li>
+</ul>
+<p>These books use similar notation as this course and cover the
+mathematical background for first part of this class. Different
+reading may be suggested for other parts of the course</p>
+</section>
+</section>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<section id="continuum-mechanics">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Continuum Mechanics</a><a class="headerlink" href="#continuum-mechanics" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><em>Macroscopic description</em> of the collective behaviour of
+atoms/molecules in the limit where scale of interest &gt;&gt; scale of the
+individual components</p></li>
+<li><p>A material, be it solid, liquid, or gas is treated as a hypothetical
+continuum where all quantities vary continuously so that
+spatial derivatives exist
+-In such a treatment, we can consider infinitesimally
+small volumes of the material and define point
+quantities, like mass, velocity, stress
+-Such a description has been found to be applicable in a
+wide range of problems in engineering and physical
+sciences</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/Hotspring.png"><img alt="_images/Hotspring.png" src="_images/Hotspring.png" style="width: 75%;" /></a>
+</figure>
+<section id="continuum-mechanics-equations">
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">Continuum Mechanics Equations</a><a class="headerlink" href="#continuum-mechanics-equations" title="Permalink to this heading">#</a></h4>
+<p><strong>General:</strong></p>
+<ol class="arabic simple">
+<li><p><em>Kinematics</em> – describing deformation and velocity without
+considering forces</p></li>
+<li><p><em>Dynamics</em> – equations that describe force balance, conservation
+of linear and angular momentum</p></li>
+<li><p><em>Thermodynamics</em> – relations temperature, heat flux, stress,
+entropy</p></li>
+</ol>
+<p><strong>Material Specific:</strong></p>
+<ol class="arabic simple" start="4">
+<li><p><em>Constitutive equations</em> - relations describing how material
+properties vary as a function of T,P, stress, ect. Such material
+properties govern dynamics (e.g. density), response to stress
+(viscosity, elastic parameters), heat transport (thermal
+conductivity, diffusivity)</p></li>
+</ol>
+<p><em>These equations yeild a set of Partial Differential Equations that can be
+solved for displacement, velocity, temperature, ect…</em></p>
+</section>
+</section>
+<section id="differential-equations">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Differential Equations</a><a class="headerlink" href="#differential-equations" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Ordinary Differential Equations</strong> - describe how
+variables depend on a single independent parameter (e.g. time or distance).  Take Newton’s second law for example,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ m\frac{d^2x}{dt^2} = F \]</div>
+<ul class="simple">
+<li><p><strong>Partial Differential Equations</strong> - describe how
+variables depend on several independent parameters
+(e.g. time, x,y,z coordinates). For example, the thermal diffusion equation,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial T}{\partial t} = k \frac{\partial ^2 T}{\partial x^2} \]</div>
+<p><span class="math notranslate nohighlight">\(\partial\)</span> <em>- partial derivative</em></p>
+</section>
+</section>
+<section id="vectors-and-tensors">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Vectors and Tensors</a><a class="headerlink" href="#vectors-and-tensors" title="Permalink to this heading">#</a></h2>
+<p>Revision topics for vectors</p>
+<ul class="simple">
+<li><p>Addition, linear independence</p></li>
+<li><p>Orthonormal Cartesian bases, transformation</p></li>
+<li><p>Multiplication</p></li>
+<li><p>Derivatives, del, div, curl</p></li>
+</ul>
+<p>Revision / introductory topics for tensors</p>
+<ul class="simple">
+<li><p>Tensors, rank, stress tensor</p></li>
+<li><p>Index notation, summation convention</p></li>
+<li><p>Addition, multiplication</p></li>
+<li><p>Tensor calculus: gradient, divergence, curl, ect…</p></li>
+</ul>
+<section id="learning-outcomes-a-name-learning-outcomes-a">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Learning Outcomes <a name="learning_outcomes"></a></a><a class="headerlink" href="#learning-outcomes-a-name-learning-outcomes-a" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Be able to perform vector/tensor operations (addition,
+multiplication) on Cartesian orthonormal bases</p></li>
+<li><p>Be able to do basic vector/tensor calculus (time and
+space derivatives, divergence, curl of a vector field) on
+these bases.</p></li>
+<li><p>Perform transformation of a vector from one Cartesian
+basis to another.</p></li>
+<li><p>Understand differences/commonalities between tensor
+and vector</p></li>
+<li><p>Familiarity with index notation and Einstein convention</p></li>
+</ol>
+</section>
+<section id="introduction-to-vectors-and-tensors">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Introduction to Vectors and Tensors</a><a class="headerlink" href="#introduction-to-vectors-and-tensors" title="Permalink to this heading">#</a></h3>
+<p>Continuum mechanics equations require vectors and tensors, e.g.
+velocity is a vector, with magnitude and direction in 3-D, and so are
+forces like gravity. The components of a vector depend on the coordinate system chosen to represent them in. However, the actual size and orientation of the vector is not dependent on the choice of coordinate system</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/CoordinateSystems.jpg"><img alt="_images/CoordinateSystems.jpg" src="_images/CoordinateSystems.jpg" style="width: 70%;" /></a>
+</figure>
+<p><em>note the size and orientation of the vector is the same regardless of coordinate system</em></p>
+<section id="key-charecteristics-of-a-vector">
+<h4><a class="toc-backref" href="#id12" role="doc-backlink">Key Charecteristics of a Vector</a><a class="headerlink" href="#key-charecteristics-of-a-vector" title="Permalink to this heading">#</a></h4>
+<p>Which of the following are true of vectors?</p>
+<ol class="arabic simple">
+<li><p>Anything that is not a scalar</p></li>
+<li><p>Has three components</p></li>
+<li><p>Has magnitude and direction</p></li>
+<li><p>Depends on coordinate frame</p></li>
+<li><p>Velocity and rotation are two examples</p></li>
+<li><p>Multiplication of two vectors gives another vector</p></li>
+</ol>
+</section>
+<section id="notation">
+<h4><a class="toc-backref" href="#id13" role="doc-backlink">Notation</a><a class="headerlink" href="#notation" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Vectors writen as <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>, <span class="math notranslate nohighlight">\(\bar{v}\)</span>, or <span class="math notranslate nohighlight">\(\overrightarrow{v}\)</span></p></li>
+<li><p>Length of vectors written as <span class="math notranslate nohighlight">\(v\)</span> or <span class="math notranslate nohighlight">\(\lvert \boldsymbol{v} \rvert\)</span></p></li>
+<li><p>Vector in Cartesian components written as <span class="math notranslate nohighlight">\(v_x , v_y , v_z\)</span></p></li>
+<li><p>Index notation, <span class="math notranslate nohighlight">\(v_i\)</span> where <span class="math notranslate nohighlight">\(i = x,y,z\)</span> or <span class="math notranslate nohighlight">\(i = 1,2,3\)</span></p></li>
+<li><p>Unit vector along direction of <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> written as <span class="math notranslate nohighlight">\(\hat{e_v}\)</span></p></li>
+</ul>
+<p>The unit vector is defined as follows,</p>
+<div class="math notranslate nohighlight">
+\[\hat{e_v} = \frac{\boldsymbol{v}}{\lvert \boldsymbol{v} \rvert}\]</div>
+<p>Hence,</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{v} = \hat{e_v} \lvert \boldsymbol{v} \rvert\]</div>
+</section>
+</section>
+<section id="vector-properties">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Vector properties</a><a class="headerlink" href="#vector-properties" title="Permalink to this heading">#</a></h3>
+<p>Vectors satisfy certain rules of addition and scalar multiplication</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} + \mathbf{b} = \mathbf{b} +\mathbf{a}\)</span>  (commutative)</p></li>
+<li><p><span class="math notranslate nohighlight">\((\mathbf{a} + \mathbf{b}) + \mathbf{c} = \mathbf{a} +(\mathbf{b} + \mathbf{c})\)</span>  (associative)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha (\mathbf{a} + \mathbf{b}) = \alpha\mathbf{a} + \alpha\mathbf{b}\)</span> (distributive)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} + 0 = \mathbf{a}\)</span> (zero vector)</p></li>
+<li><p><span class="math notranslate nohighlight">\(1 \cdot{} \mathbf{a} = \mathbf{a} \cdot 1\)</span> and <span class="math notranslate nohighlight">\(0 \cdot{} \mathbf{a} = 0\)</span></p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/vector_sum.png"><img alt="_images/vector_sum.png" src="_images/vector_sum.png" style="width: 75%;" /></a>
+</figure>
+<p>We will see that similar rules apply to tensors. See <a class="reference external" href="http://mathworld.wolfram.com/Vector.html">http://mathworld.wolfram.com/Vector.html</a> for more details</p>
+<section id="finite-rotation-vector">
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">Finite rotation “Vector”</a><a class="headerlink" href="#finite-rotation-vector" title="Permalink to this heading">#</a></h4>
+<p>A finite rotation can be represented as a pseudo-vector. The direction of the vector forms the axis of rotation and the magnitude represents the angle rotated. For the direction of rotation the right hand rule is used where the thumb aligns to the axis of rotation and the fingers point in the direction of rotation.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/Rotationvector.png"><img alt="_images/Rotationvector.png" src="_images/Rotationvector.png" style="width: 50%;" /></a>
+</figure>
+<p>The reason that finite rotation is a pseudo-vector is that the addition of two finite rotations is not commutative. Hence finite rotations do not satisfy the properties of a vector. However, an infinitesimal rotation is considered a vector.</p>
+</section>
+<section id="linear-independence">
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Linear independence</a><a class="headerlink" href="#linear-independence" title="Permalink to this heading">#</a></h4>
+<p>Vectors <span class="math notranslate nohighlight">\(\mathbf{v_1}\)</span> through <span class="math notranslate nohighlight">\(\mathbf{v_n}\)</span> are linearly <em>dependent</em> if coefficients <span class="math notranslate nohighlight">\(c_i\)</span> can be found such that:</p>
+<p><span class="math notranslate nohighlight">\(c_1 \mathbf{v_1} + c_2 \mathbf{v_2} + c_3 \mathbf{v_3} + ... + c_n \mathbf{v_n} = 0\)</span> where <span class="math notranslate nohighlight">\(c_i \neq 0\)</span></p>
+<p>Hence, vectors are linearly <em>independent</em> if they cannot be written as linear combinations of each other.</p>
+<ul class="simple">
+<li><p>Two linearly dependent vectors are parallel/collinear</p></li>
+<li><p>Three linearly dependent vectors are coplanar
+-Four or more vectors are always linearly dependent</p></li>
+</ul>
+<p>Important for defining bases and finding independent solutions to a problem. Practice for this is in Exercise 2</p>
+</section>
+</section>
+<section id="inner-dot-or-scalar-product">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Inner, dot, or scalar product</a><a class="headerlink" href="#inner-dot-or-scalar-product" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{F} \cdot \mathbf{d} = \lvert \mathbf{F} \rvert \rvert \lvert \mathbf{d} \rvert \cos{\theta}
+\]</div>
+<ul class="simple">
+<li><p>Produces a scalar (hence the name scalar product)</p></li>
+<li><p>gives the projection of <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> on <span class="math notranslate nohighlight">\(\mathbf{d}\)</span> scaled by <span class="math notranslate nohighlight">\(\lvert \mathbf{d} \rvert\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{F} \cdot \mathbf{d} = \mathbf{d} \cdot \mathbf{F}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{a} = length(\mathbf{a})^2 = \lvert \mathbf{a} \rvert^2\)</span></p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/Dotproduct.png"><img alt="_images/Dotproduct.png" src="_images/Dotproduct.png" style="width: 20%;" /></a>
+</figure>
+<p>The scalar product has several physical interpretations. For example, if <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> is force and <span class="math notranslate nohighlight">\(\mathbf{d}\)</span> is displacement, then <span class="math notranslate nohighlight">\(\mathbf{F} \cdot \mathbf{d}\)</span> is the work done by the force <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> for displacement <span class="math notranslate nohighlight">\(\mathbf{d}\)</span></p>
+</section>
+<section id="cross-vector-or-outer-product">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Cross, vector, or outer product</a><a class="headerlink" href="#cross-vector-or-outer-product" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Produces a vector</p></li>
+<li><p>Magnitude of cross product is the area of a parallellogram spanned by <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p></li>
+<li><p>Direction of cross product is normal to the plane of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are parallel cross product = 0</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} \times \mathbf{b} = -\mathbf{a} \times \mathbf{b}\)</span></p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/cross_product.png"><img alt="_images/cross_product.png" src="_images/cross_product.png" style="width: 30%;" /></a>
+</figure>
+<p>One physical interpretation of the cross product is in calculating moments. If <span class="math notranslate nohighlight">\(\mathbf{r_{AB}}\)</span> is the moment arm between the pivot point A and the force <span class="math notranslate nohighlight">\(\mathbf{F_B}\)</span>, then the resulting moment is calculated as</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{M_A} = \mathbf{r_{AB}} \times\mathbf{F_B} = aF\sin{\phi} \hat{\mathbf{e_M}}
+\]</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/Moment_cross_product.png"><img alt="_images/Moment_cross_product.png" src="_images/Moment_cross_product.png" style="width: 50%;" /></a>
+</figure>
+</section>
+<section id="product-calculations">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Product calculations</a><a class="headerlink" href="#product-calculations" title="Permalink to this heading">#</a></h3>
+<p>The products of vectors in rectangular Cartesian coordinates:<br />
+<strong>2D</strong></p>
+<div class="math notranslate nohighlight">
+\[\mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf{v} \times \mathbf{w} = (v_1 w_2 - v_2 w_1) \hat{\mathbf{e_3}}\]</div>
+<p><strong>3D</strong></p>
+<div class="math notranslate nohighlight">
+\[\mathbf{v} \cdot \mathbf{w} = v_1 w_1 + v_2 w_2 + v_3 w_3\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{v} \times \mathbf{w} = 
+\left(\begin{array}{cc} 
+v_2 w_3 - v_3 w_2\\ 
+v_3 w_1 - v_1 w_3\\
+v_1 w_2 - v_2 w_1\\
+\end{array}\right)\end{split}\]</div>
+</section>
+</section>
+<section id="rectangular-cartesian-coordinate-system">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Rectangular Cartesian Coordinate System</a><a class="headerlink" href="#rectangular-cartesian-coordinate-system" title="Permalink to this heading">#</a></h2>
+<p>The rectangular Cartesian coordinate system has an orthonormal basis. This means that the basis vectors are all unit vectors, orthogonal to each other.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\mathbf{e_i}} \cdot \hat{\mathbf{e_j}} = 0 \iff i \neq j
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\hat{\mathbf{e_i}} \cdot \hat{\mathbf{e_i}} = \lvert \hat{\mathbf{e_i}} \rvert^2 = 1
+\]</div>
+<p>Cartesian orthonormal bases will be assumed for the following</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/Other_bases.png"><img alt="_images/Other_bases.png" src="_images/Other_bases.png" style="width: 80%;" /></a>
+</figure>
+<section id="equivalence-of-cartesian-geometric-and-algebraic-dot-product">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Equivalence of Cartesian geometric and algebraic dot product</a><a class="headerlink" href="#equivalence-of-cartesian-geometric-and-algebraic-dot-product" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[ 
+\mathbf{a} = \sum_i a_i \hat{\mathbf{e_i}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{b} = \sum_i b_i \hat{\mathbf{e_i}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a} \cdot \hat{\mathbf{e_i}} = \lvert \mathbf{a} \rvert \lvert \hat{\mathbf{e_i}} \rvert \cos{\theta_i} = \lvert \mathbf{a} \rvert  \cos{\theta_i} = a_i 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a} \cdot \mathbf{b} = \mathbf{a} \cdot \sum_i b_i \hat{\mathbf{e_i}} = \sum_i b_i (\mathbf{a} \cdot \hat{\mathbf{e_i}}) = \sum_i b_i a_i = \sum_i a_i b_i
+\]</div>
+</section>
+<section id="cartesian-algebraic-cross-product">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Cartesian algebraic cross product</a><a class="headerlink" href="#cartesian-algebraic-cross-product" title="Permalink to this heading">#</a></h3>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/cartesian.png"><img alt="_images/cartesian.png" src="_images/cartesian.png" style="width: 20%;" /></a>
+</figure>
+<p>Recall that the result of the cross product has a magnitude equal to the area of a parallellogram formed by the two vectors, and has direction normal to the parallellogram. From this it can be seen that <span class="math notranslate nohighlight">\(\hat{\mathbf{e_1}} \times \hat{\mathbf{e_2}} = \hat{\mathbf{e_3}}\)</span>. Using the properties of cross product we can also see that <span class="math notranslate nohighlight">\(\hat{\mathbf{e_2}} \times \hat{\mathbf{e_1}} = -\hat{\mathbf{e_3}}\)</span></p>
+<p>Using the basis vectors, the 2D cross product result can be shown fully as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a} \times \mathbf{b} = (a_1 \hat{\mathbf{e_1}} + a_2 \hat{\mathbf{e_2}}) \times (b_1 \hat{\mathbf{e_1}} + b_2 \hat{\mathbf{e_2}})
+\]</div>
+<div class="math notranslate nohighlight">
+\[ = a_1 b_1 (\hat{\mathbf{e_1}} \times \hat{\mathbf{e_1}}) + a_1 b_2 (\hat{\mathbf{e_1}} \times \hat{\mathbf{e_2}}) + a_2 b_1 (\hat{\mathbf{e_2}} \times \hat{\mathbf{e_1}}) + a_2 b_2 (\hat{\mathbf{e_2}} \times \hat{\mathbf{e_2}})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= (a_1 b_2 - a_2 b_1)\hat{\mathbf{e_3}}
+\]</div>
+</section>
+<section id="triple-products-a-name-tripple-product-a">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Triple Products <a name="tripple_product"></a></a><a class="headerlink" href="#triple-products-a-name-tripple-product-a" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a}(\mathbf{b}\cdot\mathbf{c})\)</span> is a vector multiplied by a scalar</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\)</span> is the scalar triple product</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) =(\mathbf{a}\times\mathbf{b})\cdot\mathbf{c}\)</span><br />
+<span class="math notranslate nohighlight">\( = \mathbf{c}\cdot(\mathbf{a}\times\mathbf{b}) = \mathbf{b}\cdot(\mathbf{c}\times\mathbf{a})\)</span> (with cyclical permutation)</p></li>
+<li><p><span class="math notranslate nohighlight">\(-\mathbf{a}\cdot(\mathbf{c}\times\mathbf{b}) =-\mathbf{c}\cdot(\mathbf{b}\times\mathbf{a}) = -\mathbf{b}\cdot(\mathbf{a}\times\mathbf{c})\)</span> (with order changed)</p></li>
+<li><p><span class="math notranslate nohighlight">\( = 0 \)</span> if <span class="math notranslate nohighlight">\(\mathbf{a}, \mathbf{b}, \mathbf{c}\)</span> are coplanar</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} \times (\mathbf{b} \times \mathbf{c})\)</span> lies in plance formed by <span class="math notranslate nohighlight">\(\mathbf{b} \times \mathbf{c}\)</span> normal to <span class="math notranslate nohighlight">\(\mathbf{a}\)</span><br />
+<span class="math notranslate nohighlight">\( \neq (\mathbf{a} \times \mathbf{b}) \times \mathbf{c}\)</span><br />
+<span class="math notranslate nohighlight">\( = (\mathbf{a} \cdot \mathbf{c}) \mathbf{b} - (\mathbf{a} \cdot \mathbf{b}) \mathbf{c}\)</span></p></li>
+</ul>
+<p><em>Exercise 8</em></p>
+</section>
+</section>
+<section id="covered-so-far">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Covered so far</a><a class="headerlink" href="#covered-so-far" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Revision of main characteristics of a vector</p></li>
+<li><p>Linear independence of vectors</p></li>
+<li><p>Vector products: dot product, cross product</p></li>
+<li><p>Definition Cartesian orthonormal basis</p></li>
+</ul>
+</section>
+<section id="take-a-break-then-try-yourself">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Take a break, then try yourself</a><a class="headerlink" href="#take-a-break-then-try-yourself" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>If the material covered so far was all familiar,
+please skip to Exercise 2 in the notebook</p></li>
+<li><p>If you would benefit from recapping vector
+products, please look at Exercise 1 first</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Lecture%201.2%20-%20Vector%20Tranformations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vector Transformations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#primary-learning-materials">Primary Learning Materials</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recomended-reading">Recomended reading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuum-mechanics">Continuum Mechanics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#continuum-mechanics-equations">Continuum Mechanics Equations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-equations">Differential Equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-tensors">Vectors and Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes-a-name-learning-outcomes-a">Learning Outcomes <a name="learning_outcomes"></a></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-vectors-and-tensors">Introduction to Vectors and Tensors</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-charecteristics-of-a-vector">Key Charecteristics of a Vector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-properties">Vector properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-rotation-vector">Finite rotation “Vector”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear independence</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-dot-or-scalar-product">Inner, dot, or scalar product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-vector-or-outer-product">Cross, vector, or outer product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#product-calculations">Product calculations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-cartesian-coordinate-system">Rectangular Cartesian Coordinate System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-of-cartesian-geometric-and-algebraic-dot-product">Equivalence of Cartesian geometric and algebraic dot product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartesian-algebraic-cross-product">Cartesian algebraic cross product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triple-products-a-name-tripple-product-a">Triple Products <a name="tripple_product"></a></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covered-so-far">Covered so far</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#take-a-break-then-try-yourself">Take a break, then try yourself</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Imperial College London
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
